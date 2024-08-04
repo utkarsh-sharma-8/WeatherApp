@@ -1,10 +1,10 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { deviceHeight, deviceWidth } from './Dimension';
-const Cards=({name,image})=>{
+const Cards=({name,image,navigation})=>{
     return(
         <View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('Details',{name})}>
                 <ImageBackground source={image} style={styleSheet.imageBackground} imageStyle={{borderRadius:20}}/>
                 <View style={styleSheet.textView}>
                     <Text style={styleSheet.text}>{name}</Text>

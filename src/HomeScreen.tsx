@@ -3,7 +3,7 @@ import { FlatList, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacit
 import Icon from 'react-native-vector-icons/Ionicons';
 import Cards from './Cards';
 import { deviceHeight, deviceWidth } from './Dimension';
-const HomeScreen=()=>{
+const HomeScreen=(props)=>{
     const [city,setCity]=useState('')
     const cities=[
         {
@@ -34,7 +34,7 @@ const HomeScreen=()=>{
                 <Icon name='ellipsis-vertical' size={30} color='white' />
             </View>
             <View style={styleSheet.textinputView}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('Details',{name:city})}>
                 <Icon name='search' size={25} color='white' style={styleSheet.icon}/>
                 </TouchableOpacity>
                 <TextInput style={styleSheet.text} onChangeText={(val)=>setCity(val)} value={city} placeholder="Enter city name" placeholderTextColor={'white'}/>
@@ -47,7 +47,7 @@ const HomeScreen=()=>{
                 data={cities} 
                 horizontal
                 renderItem={({item})=>(
-                    <Cards name={item.name} image={item.image}/>
+                    <Cards name={item.name} image={item.image} navigation={props.navigation}/>
                 )}/>
             </View>
         </View>
